@@ -1,6 +1,9 @@
 #pragma once
+
+// Include dependencies
 #include <string>
 
+// Get ready for using Unreal
 using FString = std::string;
 using int32 = int;
 
@@ -27,6 +30,7 @@ enum class EWordStatus
 	INVALID_INPUT
 };
 
+// Create our game class
 class FBullCowGame
 {
 public:

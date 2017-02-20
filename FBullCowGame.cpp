@@ -1,21 +1,27 @@
+#pragma once
+
+// Include dependencies
 #include "FBullCowGame.h"
 #include <map>
+
+// Get prepared to use unreal
 #define TMap std::map
 
 // Constructs new Bull Cow Game
 FBullCowGame::FBullCowGame() {}
-
 FBullCowGame::~FBullCowGame() {}
 
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
-
 int32 FBullCowGame::GetHWLength() const { return MyHiddenWord.length(); }
-
 int32 FBullCowGame::GetMaxTries() const { return MaxTries; }
 
+// Set/Reset the new game based on Word and Difficulty
 void FBullCowGame::Reset(FString Word, int32 Difficulty)
 {
+	// Set hidden word
 	MyHiddenWord = Word;
+
+	// Set the MaxTries dependent on difficulty
 	switch (Difficulty)
 	{
 	case 0:
@@ -25,12 +31,13 @@ void FBullCowGame::Reset(FString Word, int32 Difficulty)
 		MaxTries = Word.length() - (Word.length() / 4);
 		break;
 	case 2:
-		MaxTries = Word.length() - (Word.length() / 2);
+		MaxTries = Word.length() - (Word.length() / 3);
 		break;
 	default:
 		MaxTries = 0;
 		break;
 	}
+
 	MyCurrentTry = 1;
 	bIsGameWon = false;
 }
@@ -50,15 +57,14 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 		return EGuessStatus::WRONG_LENGTH;  // Checks if the guess is the proper length
 	} 
 	
-
 	return EGuessStatus::OK;
 }
 
+// Checks if the guess is all lower case
 bool FBullCowGame::IsLower(FString &Guess) const
 {
 	for (auto Letter : Guess)
 	{
-		// Checks if the guess is all lower case
 		if (isupper(Letter))
 		{
 			return false;
@@ -67,6 +73,7 @@ bool FBullCowGame::IsLower(FString &Guess) const
 	return true;
 }
 
+// Checks if the game has been won
 bool FBullCowGame::GetGameWon() const
 {
 	return bIsGameWon;
@@ -124,6 +131,7 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
 			}
 		}
 	}
+	// If all letters are bulls the game is won
 	if (BullCowCount.Bulls == HIDDEN_WORD_LENGTH)
 	{
 		bIsGameWon = true;

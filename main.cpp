@@ -3,7 +3,9 @@
  * This acts as the view in the MVC pattern, and is responsible
  * for all user interaction. For game logic see FBullCowGame class
  */
+#pragma once
 
+// Prepare Dependencies
 #include <iostream>
 #include <string>
 #include <stdbool.h>
@@ -11,6 +13,7 @@
 #include "main.h"
 #include "FBullCowGame.h"
 
+// Get ready for using Unreal
 using int32 = int;
 using FText = std::string;
 
@@ -55,10 +58,13 @@ static void PrintIntro()
     std::cout << " and you try to guess it!\n";
 }
 
+// Get the user's desired difficulty and ensure input is valid
 int32 GetValidDifficulty()
 {
 	EWordStatus DifficultyStatus = EWordStatus::INVALID_STATUS;
 	int32 NumDifficulty = -1;
+
+	// Loop through until receiving valid input
 	do
 	{
 		std::cout << "Choose a difficulty (easy, medium, hard): ";
@@ -88,6 +94,7 @@ int32 GetValidDifficulty()
 	return NumDifficulty;
 }
 
+// Get a valid word based on the inputed desired length
 FString GetValidWord()
 {
 	EWordStatus LengthStatus = EWordStatus::INVALID_STATUS;
@@ -97,6 +104,7 @@ FString GetValidWord()
 		FString UserLength;
 		std::getline(std::cin, UserLength);
 
+		// Make sure input is valid
 		switch (UserLength[0])
 		{
 		case 's':
@@ -120,6 +128,7 @@ FString GetValidWord()
 	return Word;
 }
 
+// Reset the game
 void Reset()
 {
 
