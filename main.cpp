@@ -16,7 +16,6 @@ using FText = std::string;
 
 // Declare constants
 FBullCowGame BCGame;
-const int32 WORD_LENGTH = BCGame.GetHWLength();
 
 // Game entry point
 int main()
@@ -94,7 +93,7 @@ FString GetValidWord()
 	EWordStatus LengthStatus = EWordStatus::INVALID_STATUS;
 	FString Word;
 	do {
-		std::cout << "Choose a difficulty (short, medium, long): ";
+		std::cout << "Choose a length (short, medium, long): ";
 		FString UserLength;
 		std::getline(std::cin, UserLength);
 
@@ -123,10 +122,11 @@ FString GetValidWord()
 
 void Reset()
 {
-	int32 Difficulty = GetValidDifficulty();
+
 	FString Word = GetValidWord();
+	int32 Difficulty = GetValidDifficulty();
 	BCGame.Reset(Word, Difficulty);
-	std::cout << "Can you guess the " << WORD_LENGTH;
+	std::cout << "Can you guess the " << BCGame.GetHWLength();
 	std::cout << " letter isogram that I'm thinking of?\n\n";
 }
 
@@ -176,7 +176,7 @@ static FText GetValidGuess()
 			std::cout << "ERR: Uppercase string, please use lowercase letters\n";
 			break;
 		case EGuessStatus::WRONG_LENGTH:
-			std::cout << "ERR: Wrong length, please enter a " << WORD_LENGTH << " letter word\n";
+			std::cout << "ERR: Wrong length, please enter a " << BCGame.GetHWLength() << " letter word\n";
 			break;
 		default:
 			// Assumes guess was valid

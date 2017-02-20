@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <array>
 
 using FString = std::string;
 using int32 = int;
@@ -27,32 +26,6 @@ enum class EWordStatus
 	OK,
 	INVALID_INPUT
 };
-
-std::array<FString, 15> IsoEasy = 
-{
-	"balcony", "shower", "pencil",
-	"newly", "super", "axe",
-	"jump", "perks", "move",
-	"quiche", "guard", "special",
-	"english", "freaky", "isogram"
-};
-std::array<FString, 15> IsoMedium = 
-{
-	"countryside", "disgrace", "facetious",
-	"disgraceful", "personality", "palindromes",
-	"nefarious", "dangerous", "disgraceful",
-	"campground", "flowchart", "hypnotize",
-	"exhausting", "demographics", "considerably"
-};
-std::array<FString, 15> IsoHard = 
-{
-	"misconjugate", "housewarming", "unforgivable",
-	"unprofitable", "documentary", "consumptively",
-	"flamethrowing", "hypnotizables", "metalworkings",
-	"subordinate", "troublemaking", "misconjugated",
-	"unproblematic", "dermatoglyphics", "hydropneumatics"
-};
-
 
 class FBullCowGame
 {

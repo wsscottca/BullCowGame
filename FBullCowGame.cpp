@@ -11,11 +11,7 @@ int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 
 int32 FBullCowGame::GetHWLength() const { return MyHiddenWord.length(); }
 
-int32 FBullCowGame::GetMaxTries() const
-{
-	//TMap<int32, int32> MaxTries{ {{}, 3}, {{}, 5}, {} };
-	return 0;
-}
+int32 FBullCowGame::GetMaxTries() const { return MaxTries; }
 
 void FBullCowGame::Reset(FString Word, int32 Difficulty)
 {
